@@ -14,6 +14,8 @@ public class PlayerPhysics : MonoBehaviour {
 
 	[HideInInspector]
 	public bool grounded;
+	[HideInInspector]
+	public bool movementStopped;
 
 	Ray ray;
 	RaycastHit hit;
@@ -38,11 +40,12 @@ public class PlayerPhysics : MonoBehaviour {
 
 			ray = new Ray(new Vector2(x,y), new Vector2(0,dir));
 			Debug.DrawRay(ray.origin, ray.direction);
-			if(Physics.Raycast(ray, out hit, Mathf.Abs(deltaY),collisionMask)){
+
+			if(Physics.Raycast(ray, out hit, Mathf.Abs(deltaY) + skin ,collisionMask)){
 				float dst = Vector3.Distance (ray.origin, hit.point);
 
 				if(dst > skin){
-					deltaY = -dst + skin;
+					deltaY = dst * dir - skin * dir;
 				}
 				else{
 					deltaY = 0;
@@ -50,8 +53,33 @@ public class PlayerPhysics : MonoBehaviour {
 				grounded = true;
 				break;
 			}
+		}
 
+		//Left and right collission
 
+		movementStopped = false;
+		for (int i = 0; i<3; i++) {
+			float dir = Mathf.Sign(deltaX);
+			float x = p.x + c.x + s.x/2*dir;
+			float y = p.y+c.y-s.y/2 + s.y/2*i;
+			
+			ray = new Ray(new Vector2(x,y), new Vector2(dir, 0));
+			Debug.DrawRay(ray.origin, ray.direction);
+			
+			if(Physics.Raycast(ray, out hit, Mathf.Abs(deltaX) + skin ,collisionMask)){
+				float dst = Vector3.Distance (ray.origin, hit.point);
+				
+				if(dst > skin){
+					deltaX = dst * dir - skin * dir;
+				}
+				else{
+					deltaX = 0;
+				}
+				movementStopped = true;
+				break;
+			}
+			
+			
 		}
 
 		Vector2 finalTransform = new Vector2 (deltaX, deltaY);
