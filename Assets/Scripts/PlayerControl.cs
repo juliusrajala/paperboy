@@ -10,7 +10,9 @@ public class PlayerControl : MonoBehaviour {
 	public float speed = 10;
 	public float acceleration = 12;
 	public float jumpheight = 15;
-	
+	public float whileFloating = 2;
+
+	private float gravityNow;
 	private float currentSpeed;
 	private float targetSpeed;
 	private Vector2 amountToMove;
@@ -37,8 +39,15 @@ public class PlayerControl : MonoBehaviour {
 		}
 
 		amountToMove.x = currentSpeed;
-		amountToMove.y -= gravity * Time.deltaTime;
+
+		if (Input.GetButton ("Jump") && Mathf.Sign(amountToMove.y) == -1) {
+			gravityNow = whileFloating;
+		}
+
+		amountToMove.y -= gravityNow * Time.deltaTime;
 		playerPhysics.Move (amountToMove * Time.deltaTime);
+
+		gravityNow = gravity;
 
 	
 	}

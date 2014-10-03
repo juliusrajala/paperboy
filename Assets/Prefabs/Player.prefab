@@ -86,6 +86,7 @@ MonoBehaviour:
   speed: 10
   acceleration: 12
   jumpheight: 15
+  whileFloating: 2
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1

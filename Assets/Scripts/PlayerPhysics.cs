@@ -20,6 +20,13 @@ public class PlayerPhysics : MonoBehaviour {
 	Ray ray;
 	RaycastHit hit;
 
+	//MovingPlatform-settiä
+
+	private Transform movingPlatform;
+	private Vector3 platformWas;
+	private Vector3 deltaPlatform;
+
+
 	void Start (){
 		collider = GetComponent<BoxCollider> ();
 		s = collider.size;
@@ -28,9 +35,17 @@ public class PlayerPhysics : MonoBehaviour {
 
 	public void Move(Vector2 moveAmount){
 
+
 		float deltaY = moveAmount.y;
 		float deltaX = moveAmount.x;
 		Vector2 p = transform.position;
+
+		if (movingPlatform) {
+						deltaPlatform = movingPlatform.position - platformWas;
+						platformWas = movingPlatform.position;
+		} else {
+			deltaPlatform = Vector3.zero;
+		}
 
 		grounded = false;
 		for (int i = 0; i<3; i++) {
@@ -42,8 +57,12 @@ public class PlayerPhysics : MonoBehaviour {
 			Debug.DrawRay(ray.origin, ray.direction);
 
 			if(Physics.Raycast(ray, out hit, Mathf.Abs(deltaY) + skin ,collisionMask)){
-				float dst = Vector3.Distance (ray.origin, hit.point);
 
+				movingPlatform = hit.transform;
+				platformWas = movingPlatform.position;
+
+				float dst = Vector3.Distance (ray.origin, hit.point);
+				
 				if(dst > skin){
 					deltaY = dst * dir - skin * dir;
 				}
@@ -51,9 +70,15 @@ public class PlayerPhysics : MonoBehaviour {
 					deltaY = 0;
 				}
 				grounded = true;
+
+				
 				break;
 			}
+			else{
+				movingPlatform = null;
+			}
 		}
+
 
 		//Left and right collission
 
@@ -76,13 +101,18 @@ public class PlayerPhysics : MonoBehaviour {
 					deltaX = 0;
 				}
 				movementStopped = true;
+
+
 				break;
 			}
 			
 			
 		}
 
-		Vector2 finalTransform = new Vector2 (deltaX, deltaY);
+
+
+
+		Vector2 finalTransform = new Vector2 (deltaX + deltaPlatform.x, deltaY + deltaPlatform.y);
 		transform.Translate (finalTransform);
 	}
 
