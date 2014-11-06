@@ -11,7 +11,9 @@ public class PlayerControl : MonoBehaviour {
 	public float acceleration = 12;
 	public float jumpheight = 15;
 	public float whileFloating = 2;
+	private float speedWhileFloating = 5;
 
+	private float speedNow;
 	private float gravityNow;
 	private float currentSpeed;
 	private float targetSpeed;
@@ -27,7 +29,13 @@ public class PlayerControl : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		targetSpeed = Input.GetAxisRaw ("Horizontal") * speed;
+
+		if (Input.GetButton ("Jump") && Mathf.Sign(amountToMove.y) == -1) {
+			gravityNow = whileFloating;
+			speedNow = speedWhileFloating;
+		}
+
+		targetSpeed = Input.GetAxisRaw ("Horizontal") * speedNow;
 		currentSpeed = IncrementTowards (currentSpeed, targetSpeed, acceleration);
 
 		if (playerPhysics.grounded) {
@@ -39,15 +47,13 @@ public class PlayerControl : MonoBehaviour {
 		}
 
 		amountToMove.x = currentSpeed;
-
-		if (Input.GetButton ("Jump") && Mathf.Sign(amountToMove.y) == -1) {
-			gravityNow = whileFloating;
-		}
+		
 
 		amountToMove.y -= gravityNow * Time.deltaTime;
 		playerPhysics.Move (amountToMove * Time.deltaTime);
 
 		gravityNow = gravity;
+		speedNow = speed;
 
 	
 	}
