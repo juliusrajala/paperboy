@@ -20,10 +20,12 @@ public class PlayerControl : MonoBehaviour {
 	private Vector2 amountToMove;
 	
 	private PlayerPhysics playerPhysics;
+	private Animator animator;
 
 	// Use this for initialization
 	void Start () {
 		playerPhysics = GetComponent<PlayerPhysics> ();
+		animator = GetComponent<Animator> ();
 	
 	}
 	
@@ -34,6 +36,14 @@ public class PlayerControl : MonoBehaviour {
 			gravityNow = whileFloating;
 			speedNow = speedWhileFloating;
 		}
+
+		var horizontal = Input.GetAxis ("Horizontal");
+
+		if (horizontal < 0) {
+						animator.SetInteger ("Direction", 2);
+				} else {
+						animator.SetInteger ("Direction", 1);
+				}
 
 		targetSpeed = Input.GetAxisRaw ("Horizontal") * speedNow;
 		currentSpeed = IncrementTowards (currentSpeed, targetSpeed, acceleration);
