@@ -27,10 +27,14 @@ public class PlayerPhysics : MonoBehaviour {
 	private Vector3 deltaPlatform;
 
 
+	private bool died;
+
+
 	void Start (){
 		collider = GetComponent<BoxCollider> ();
 		s = collider.size;
 		c = collider.center;
+		died = false;
 	}
 
 	public void Move(Vector2 moveAmount){
@@ -43,6 +47,12 @@ public class PlayerPhysics : MonoBehaviour {
 		if (movingPlatform) {
 						deltaPlatform = movingPlatform.position - platformWas;
 						platformWas = movingPlatform.position;
+			if(movingPlatform.name == "ConveyorRight"){
+				deltaPlatform = new Vector3(3 * Time.deltaTime, 0, 0);
+			}
+			if(movingPlatform.name == "ConveyorLeft"){
+				deltaPlatform = new Vector3(-3 * Time.deltaTime, 0, 0);
+			}
 		} else {
 			deltaPlatform = Vector3.zero;
 		}
@@ -61,6 +71,8 @@ public class PlayerPhysics : MonoBehaviour {
 				movingPlatform = hit.transform;
 				platformWas = movingPlatform.position;
 
+				print (movingPlatform.parent.name);
+
 				float dst = Vector3.Distance (ray.origin, hit.point);
 				
 				if(dst > skin){
@@ -68,6 +80,9 @@ public class PlayerPhysics : MonoBehaviour {
 				}
 				else{
 					deltaY = 0;
+					if(movingPlatform.parent.name == "Enemies"){
+						died = true;
+					}
 				}
 				grounded = true;
 
@@ -93,12 +108,18 @@ public class PlayerPhysics : MonoBehaviour {
 			
 			if(Physics.Raycast(ray, out hit, Mathf.Abs(deltaX) + skin ,collisionMask)){
 				float dst = Vector3.Distance (ray.origin, hit.point);
-				
+
+				string hitter = hit.transform.parent.name;
+				print (hitter);
+
 				if(dst > skin){
 					deltaX = dst * dir - skin * dir;
 				}
 				else{
 					deltaX = 0;
+					if(hitter == "Enemies"){
+						died = true;
+					}
 				}
 				movementStopped = true;
 
@@ -109,11 +130,20 @@ public class PlayerPhysics : MonoBehaviour {
 			
 		}
 
-
+		print (died);
 
 
 		Vector2 finalTransform = new Vector2 (deltaX + deltaPlatform.x, deltaY + deltaPlatform.y);
+
+		if (died) {
+						finalTransform = Vector2.zero;
+				}
+
 		transform.Translate (finalTransform);
+
+		died = false;
 	}
+
+
 
 }
