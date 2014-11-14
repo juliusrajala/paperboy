@@ -40,9 +40,17 @@ public class PlayerControl : MonoBehaviour {
 		var horizontal = Input.GetAxis ("Horizontal");
 
 		if (horizontal < 0) {
-						animator.SetInteger ("Direction", 2);
+						if (gravityNow == whileFloating) {
+								animator.SetInteger ("Direction", 4);
+						} else {
+								animator.SetInteger ("Direction", 2);
+						}
 				} else {
-						animator.SetInteger ("Direction", 1);
+						if (gravityNow == whileFloating) {
+								animator.SetInteger ("Direction", 3);
+						} else {
+								animator.SetInteger ("Direction", 1);
+						}
 				}
 
 		targetSpeed = Input.GetAxisRaw ("Horizontal") * speedNow;

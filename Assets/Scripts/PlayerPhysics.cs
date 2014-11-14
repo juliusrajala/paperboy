@@ -63,15 +63,19 @@ public class PlayerPhysics : MonoBehaviour {
 			float x = (p.x + c.x - s.x/2)+s.x/2*i;
 			float y = p.y+c.y+s.y/2*dir;
 
-			ray = new Ray(new Vector2(x,y), new Vector2(0,dir));
-			Debug.DrawRay(ray.origin, ray.direction);
 
-			if(Physics.Raycast(ray, out hit, Mathf.Abs(deltaY) + skin ,collisionMask)){
+			ray = new Ray(new Vector2(x,y), new Vector2(0,dir));
+			//Debug.DrawRay(ray.origin, ray.direction);
+
+
+			//Seuraa collisionia ja toteuttaa laskeutumisen esimerkiksi liikkuville alustoille
+			if(Physics.Raycast(ray, out hit, Mathf.Abs(deltaY) + skin,collisionMask)){
 
 				movingPlatform = hit.transform;
 				platformWas = movingPlatform.position;
 
 				print (movingPlatform.parent.name);
+
 
 				float dst = Vector3.Distance (ray.origin, hit.point);
 				
@@ -80,11 +84,11 @@ public class PlayerPhysics : MonoBehaviour {
 				}
 				else{
 					deltaY = 0;
-					if(movingPlatform.parent.name == "Enemies"){
-						died = true;
-					}
 				}
 				grounded = true;
+				if(movingPlatform.parent.name == "Enemies"){
+					died = true;
+				}
 
 				
 				break;
@@ -104,7 +108,7 @@ public class PlayerPhysics : MonoBehaviour {
 			float y = p.y+c.y-s.y/2 + s.y/2*i;
 			
 			ray = new Ray(new Vector2(x,y), new Vector2(dir, 0));
-			Debug.DrawRay(ray.origin, ray.direction);
+			//Debug.DrawRay(ray.origin, ray.direction);
 			
 			if(Physics.Raycast(ray, out hit, Mathf.Abs(deltaX) + skin ,collisionMask)){
 				float dst = Vector3.Distance (ray.origin, hit.point);
@@ -130,13 +134,23 @@ public class PlayerPhysics : MonoBehaviour {
 			
 		}
 
-		print (died);
+		if (!grounded && !movementStopped) {
+						Vector3 playerDir = new Vector3 (deltaX, deltaY);
+						Vector3 cornerOut = new Vector3 (p.x + c.x + s.x / 2 * Mathf.Sign (deltaX), p.y + c.y + s.y / 2 * Mathf.Sign (deltaY));
+						ray = new Ray (cornerOut, playerDir.normalized);
 
+
+						if (Physics.Raycast (ray, Mathf.Sqrt (deltaX * deltaX + deltaY * deltaY), collisionMask)) {
+								grounded = true;
+								deltaY = 0;
+						}
+				}
+	
 
 		Vector2 finalTransform = new Vector2 (deltaX + deltaPlatform.x, deltaY + deltaPlatform.y);
 
 		if (died) {
-						finalTransform = Vector2.zero;
+						transform.position = Vector3.zero;
 				}
 
 		transform.Translate (finalTransform);
