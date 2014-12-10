@@ -1,0 +1,149 @@
+[33mcommit 1377f7eda0b0d789738eb11b884b16da7a19368a[m
+Merge: 9302010 c14d167
+Author: Julius Rajala <juliusrajala@gmail.com>
+Date:   Wed Dec 10 19:44:29 2014 +0200
+
+    Did stupid shit, sue me.
+
+[33mcommit 9302010a34d331d69846b618016fc57d70eec7d8[m
+Author: Julius Rajala <juliusrajala@gmail.com>
+Date:   Wed Dec 10 19:37:24 2014 +0200
+
+    Shiit
+
+[33mcommit c14d16718bbbc28dbfba8cd6383b59a292eb6a16[m
+Merge: 784e6e4 fc764e6
+Author: Pyry Pajunpää <pymapa@utu.fi>
+Date:   Wed Dec 10 19:35:40 2014 +0200
+
+    Merge branch 'master' of https://github.com/juliusrajala/paperboy
+
+[33mcommit fc764e6a3c8a027f478b0bb2949a53ad0bc597f6[m
+Author: Konemiees <konsta.sinisalo@gmail.com>
+Date:   Wed Dec 10 19:20:02 2014 +0200
+
+    Im ona-boaattinen
+
+[33mcommit 83ca0a252f1311a4c9573c971dc50c7925448d75[m
+Merge: 7e4b173 784e6e4
+Author: Julius Rajala <juliusrajala@gmail.com>
+Date:   Wed Dec 10 18:24:49 2014 +0200
+
+    Merge branch 'master' of https://github.com/juliusrajala/paperboy
+    
+    Conflicts:
+    	paperboy.git/packed-refs
+
+[33mcommit 7e4b17346d0b86f3fa6c7a3ba917b9fefe0456a2[m
+Author: Julius Rajala <juliusrajala@gmail.com>
+Date:   Wed Dec 10 18:24:16 2014 +0200
+
+    a
+
+[33mcommit 784e6e4d89768d2641edfc1b883abb07ccd62555[m
+Author: pymapa <pymapa@utu.fi>
+Date:   Wed Dec 10 17:31:11 2014 +0200
+
+    äänet
+
+[33mcommit 4e27ca3802038828810a157df6dbd4a03030632a[m
+Author: Julius Rajala <juliusrajala@gmail.com>
+Date:   Wed Dec 10 16:24:26 2014 +0200
+
+    Kuolema on tullut. Kuolkaa.
+
+[33mcommit 45c2099a2775483a4432b056c703afbb050adda7[m
+Author: Julius Rajala <juliusrajala@gmail.com>
+Date:   Wed Dec 10 16:13:12 2014 +0200
+
+    Jep
+
+[33mcommit 7a5fdf81d3f1408051e86b26f7460bb5341537e2[m
+Author: Konemiees <konsta.sinisalo@gmail.com>
+Date:   Wed Dec 10 15:37:02 2014 +0200
+
+    Not so speedy boat
+
+[33mcommit acef683fa6e8d85947a47e082d89456e2df1426c[m
+Author: Konemiees <konsta.sinisalo@gmail.com>
+Date:   Wed Dec 10 11:10:38 2014 +0200
+
+    Most up to date
+
+[33mcommit cce9bdb0ac607b1545c9bb4f5737c372b62e45c0[m
+Author: Konemiees <konsta.sinisalo@gmail.com>
+Date:   Wed Dec 10 10:47:18 2014 +0200
+
+    Ruvetaan työstämää
+
+[33mcommit 3f9bb8759f253dc0f0ae2854b6f93121fe201d50[m
+Author: Konemiees <konsta.sinisalo@gmail.com>
+Date:   Fri Nov 14 11:51:48 2014 +0200
+
+    Proto bääbää
+
+[33mcommit a533607b3f538ede9d5b28cae425f5a8dd9afa7b[m
+Author: Konemiees <konsta.sinisalo@gmail.com>
+Date:   Tue Nov 11 02:17:02 2014 +0200
+
+    Ensimmäisen tason alku ja saksiainen
+
+[33mcommit 9f92d9c766fa54e9f27c16ecc04d604281bc78fe[m
+Author: Konemiees <konsta.sinisalo@gmail.com>
+Date:   Fri Nov 7 17:56:24 2014 +0200
+
+    Animaation suunta vaihtuu
+
+[33mcommit 3490f24cf511018759f854f05071ca939fb763b7[m
+Author: Konemiees <konsta.sinisalo@gmail.com>
+Date:   Thu Nov 6 21:34:17 2014 +0200
+
+    Paperinen poika
+
+[33mcommit 55fc77c135f98997eaeb74745b89bfc84b5dbc89[m
+Author: Konemiees <konsta.sinisalo@gmail.com>
+Date:   Fri Oct 3 23:59:37 2014 +0300
+
+    Alustantunnistus ja leijunta
+
+[33mcommit c9cbb393851818cbaa424556340f2b7e137842a1[m
+Author: Konemiees <konsta.sinisalo@gmail.com>
+Date:   Mon Sep 15 19:07:10 2014 +0300
+
+    Liikkuva platformi
+
+[33mcommit 9f6f74a9b7df789cfe2d82fc2357af1ea248de5a[m
+Author: Konemiees <konsta.sinisalo@gmail.com>
+Date:   Mon Sep 15 00:32:33 2014 +0300
+
+    Kamera seuraa kuin poliisikoira
+
+[33mcommit f8bee4f48d79a052a3036b983e1ea18532959e4f[m
+Author: Julius Rajala <juliusrajala@gmail.com>
+Date:   Sun Sep 14 21:14:13 2014 +0300
+
+    Keskenerainen kameran seuraus yms
+
+[33mcommit 55dbcd2ea716457d0182e1c8344f7a0d51708f6e[m
+Author: Konemiees <konsta.sinisalo@gmail.com>
+Date:   Sun Sep 14 19:57:48 2014 +0300
+
+    Tassa on oikeasti tietoja
+
+[33mcommit 926b0480a79e5b879c58663201ca5b5322fbc9d8[m
+Author: Konemiees <konsta.sinisalo@gmail.com>
+Date:   Sun Sep 14 18:40:29 2014 +0300
+
+    Konstan branchi jossa pohjaa ja hyppivaa laatikkoo
+
+[33mcommit 6f10840c718e6b36b07d7c8cbdce872458bf6f63[m
+Author: Julius Rajala <juliusrajala@gmail.com>
+Date:   Sat Sep 13 16:10:19 2014 +0300
+
+    Create README.md
+
+[33mcommit 2833c7266d62171e7f13d8bacf6f59bcfa4decc6[m
+Author: Julius Rajala <juliusrajala@gmail.com>
+Date:   Sat Sep 13 15:51:24 2014 +0300
+
+    [Aloitus-commit projektille]

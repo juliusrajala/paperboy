@@ -1,7 +1,8 @@
 fileFormatVersion: 2
 guid: d5fe8034a04a1954d954cfa07d1ba26f
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: vene_frame4
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0

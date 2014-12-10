@@ -1,7 +1,8 @@
 fileFormatVersion: 2
 guid: 341c02281889c334691869b1c98cef2a
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: paperboy_walk_left1
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
