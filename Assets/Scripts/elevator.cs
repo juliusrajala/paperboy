@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+﻿/**using UnityEngine;
 using System.Collections;
 
 public class elevator : MonoBehaviour {
@@ -28,3 +28,4 @@ public class elevator : MonoBehaviour {
 		transform.position = move;
 	}
 }
+**/
