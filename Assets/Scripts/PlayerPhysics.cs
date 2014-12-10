@@ -74,7 +74,7 @@ public class PlayerPhysics : MonoBehaviour {
 				movingPlatform = hit.transform;
 				platformWas = movingPlatform.position;
 
-				print (movingPlatform.parent.name);
+				//print (movingPlatform.parent.name);
 
 
 				float dst = Vector3.Distance (ray.origin, hit.point);

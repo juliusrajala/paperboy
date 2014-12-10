@@ -6,14 +6,14 @@ using System.Collections;
 public class PlayerControl : MonoBehaviour {
 
 
-	public float gravity = 20;
-	public float speed = 10;
+	public float gravity = 30;
 	public float acceleration = 12;
 	public float jumpheight = 15;
-	public float whileFloating = 2;
-	private float speedWhileFloating = 5;
+	public float whileFloating = 20;
+	public float speed = 12;
+	public float speedWhileFloating = 6;
 
-	private float speedNow;
+	private float speedFalling;
 	private float gravityNow;
 	private float currentSpeed;
 	private float targetSpeed;
@@ -34,7 +34,7 @@ public class PlayerControl : MonoBehaviour {
 
 		if (Input.GetButton ("Jump") && Mathf.Sign(amountToMove.y) == -1) {
 			gravityNow = whileFloating;
-			speedNow = speedWhileFloating;
+			speedFalling = speedWhileFloating;
 		}
 
 		var horizontal = Input.GetAxis ("Horizontal");
@@ -53,7 +53,7 @@ public class PlayerControl : MonoBehaviour {
 						}
 				}
 
-		targetSpeed = Input.GetAxisRaw ("Horizontal") * speedNow;
+		targetSpeed = Input.GetAxisRaw ("Horizontal") * speed;
 		currentSpeed = IncrementTowards (currentSpeed, targetSpeed, acceleration);
 
 		if (playerPhysics.grounded) {
@@ -68,10 +68,15 @@ public class PlayerControl : MonoBehaviour {
 		
 
 		amountToMove.y -= gravityNow * Time.deltaTime;
+		if (speedFalling != 0) {
+						if (amountToMove.y < speedFalling * (-1)) {
+								amountToMove.y = speedFalling * (-1);
+						}
+				}
 		playerPhysics.Move (amountToMove * Time.deltaTime);
 
 		gravityNow = gravity;
-		speedNow = speed;
+		speedFalling = 0;
 
 	
 	}
