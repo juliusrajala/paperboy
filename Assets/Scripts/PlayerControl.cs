@@ -12,7 +12,10 @@ public class PlayerControl : MonoBehaviour {
 	public float whileFloating = 20;
 	public float speed = 12;
 	public float speedWhileFloating = 6;
+	public float gravityBoat = 60;
+	public float speedBoat = 0;
 
+	private float speedNow;
 	private float speedFalling;
 	private float gravityNow;
 	private float currentSpeed;
@@ -26,15 +29,21 @@ public class PlayerControl : MonoBehaviour {
 	void Start () {
 		playerPhysics = GetComponent<PlayerPhysics> ();
 		animator = GetComponent<Animator> ();
+		speedNow = speed;
 	
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-		if (Input.GetButton ("Jump") && Mathf.Sign(amountToMove.y) == -1) {
+		if (Input.GetButton ("Flyer") && Mathf.Sign(amountToMove.y) == -1 && !playerPhysics.grounded) {
 			gravityNow = whileFloating;
 			speedFalling = speedWhileFloating;
+		}
+
+		if (Input.GetButton ("Boat")) {
+			gravityNow = gravityBoat;
+			speedNow = speedBoat;
 		}
 
 		var horizontal = Input.GetAxis ("Horizontal");
@@ -52,8 +61,11 @@ public class PlayerControl : MonoBehaviour {
 								animator.SetInteger ("Direction", 1);
 						}
 				}
+		if (speed == speedBoat) {
+			animator.SetInteger("Direction", 5);
+		}
 
-		targetSpeed = Input.GetAxisRaw ("Horizontal") * speed;
+		targetSpeed = Input.GetAxisRaw ("Horizontal") * speedNow;
 		currentSpeed = IncrementTowards (currentSpeed, targetSpeed, acceleration);
 
 		if (playerPhysics.grounded) {
@@ -77,7 +89,7 @@ public class PlayerControl : MonoBehaviour {
 
 		gravityNow = gravity;
 		speedFalling = 0;
-
+		speedNow = speed;
 	
 	}
 

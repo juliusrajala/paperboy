@@ -32,7 +32,7 @@ GameObject:
   - 54: {fileID: 5400000}
   m_Layer: 8
   m_Name: paperboy
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -131,10 +131,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gravity: 20
-  speed: 10
   acceleration: 12
   jumpheight: 15
   whileFloating: 2
+  speed: 10
+  speedWhileFloating: 6
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
