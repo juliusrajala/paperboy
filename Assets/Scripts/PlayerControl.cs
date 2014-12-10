@@ -61,7 +61,7 @@ public class PlayerControl : Entity {
 								animator.SetInteger ("Direction", 1);
 						}
 				}
-		if (speed == speedBoat) {
+		if (speedNow == speedBoat) {
 			animator.SetInteger("Direction", 5);
 		}
 
