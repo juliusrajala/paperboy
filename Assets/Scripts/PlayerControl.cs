@@ -3,7 +3,7 @@ using System.Collections;
 
 [RequireComponent(typeof(PlayerPhysics))]
 
-public class PlayerControl : MonoBehaviour {
+public class PlayerControl : Entity {
 
 
 	public float gravity = 30;

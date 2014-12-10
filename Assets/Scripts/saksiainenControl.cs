@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class saksiainenControl : MonoBehaviour {
+public class saksiainenControl : Entity {
 
 	public float speed = 3;
 	public float range = 12;
@@ -15,6 +15,12 @@ public class saksiainenControl : MonoBehaviour {
 		right = centre + range / 2;
 		left = centre - range / 2;
 		dir = -1;
+	}
+
+	void OnTriggerEnter(Collider c){
+		if (c.tag == "Player") {
+			c.GetComponent<Entity>().TakeDamage(10);
+		}
 	}
 	
 	// Update is called once per frame
