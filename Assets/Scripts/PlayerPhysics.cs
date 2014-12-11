@@ -28,6 +28,7 @@ public class PlayerPhysics : MonoBehaviour {
 
 
 	private bool died;
+	public bool boatOnWater;
 
 
 	void Start (){
@@ -71,6 +72,13 @@ public class PlayerPhysics : MonoBehaviour {
 			//Seuraa collisionia ja toteuttaa laskeutumisen esimerkiksi liikkuville alustoille
 			if(Physics.Raycast(ray, out hit, Mathf.Abs(deltaY) + skin,collisionMask)){
 
+				string hitter = hit.transform.parent.name;
+				print (hitter);
+				//Checks the ground on wether or not it's water.
+				if(hitter.Equals ("Water")){
+					boatOnWater = true;
+				}
+
 				movingPlatform = hit.transform;
 				platformWas = movingPlatform.position;
 
@@ -86,9 +94,6 @@ public class PlayerPhysics : MonoBehaviour {
 					deltaY = 0;
 				}
 				grounded = true;
-				if(movingPlatform.parent.name == "Enemies"){
-					died = true;
-				}
 
 				
 				break;
@@ -114,6 +119,11 @@ public class PlayerPhysics : MonoBehaviour {
 				float dst = Vector3.Distance (ray.origin, hit.point);
 
 				string hitter = hit.transform.parent.name;
+
+				if(hitter.Equals("Enemies")){
+					GameObject joku = GameObject.FindGameObjectsWithTag("Player")[0];
+					joku.GetComponent<Entity>().TakeDamage(10, "slashing");
+				}
 				print (hitter);
 
 				if(dst > skin){
@@ -121,9 +131,6 @@ public class PlayerPhysics : MonoBehaviour {
 				}
 				else{
 					deltaX = 0;
-					if(hitter == "Enemies"){
-						died = true;
-					}
 				}
 				movementStopped = true;
 
@@ -149,13 +156,9 @@ public class PlayerPhysics : MonoBehaviour {
 
 		Vector2 finalTransform = new Vector2 (deltaX + deltaPlatform.x, deltaY + deltaPlatform.y);
 
-		if (died) {
-						transform.position = Vector3.zero;
-				}
 
 		transform.Translate (finalTransform);
 
-		died = false;
 	}
 
 

@@ -14,6 +14,7 @@ public class PlayerControl : Entity {
 	public float speedWhileFloating = 6;
 	public float gravityBoat = 60;
 	public float speedBoat = 0;
+	public float speedWaterBoat= 6;
 
 	private float speedNow;
 	private float speedFalling;
@@ -23,7 +24,7 @@ public class PlayerControl : Entity {
 	private Vector2 amountToMove;
 	
 	private PlayerPhysics playerPhysics;
-	private Animator animator;
+	//private Animator animator;
 
 	// Use this for initialization
 	void Start () {
@@ -35,6 +36,19 @@ public class PlayerControl : Entity {
 	
 	// Update is called once per frame
 	void Update () {
+
+		if (playerPhysics.boatOnWater == true) {
+			GameObject joku = GameObject.FindGameObjectsWithTag("Player")[0];
+
+			if(Input.GetButton("Boat")){
+				speedNow = speedWaterBoat;
+			}else{
+				joku.GetComponent<Entity>().TakeDamage(10, "slashing");
+				playerPhysics.boatOnWater=false;
+			}
+
+		}
+		playerPhysics.boatOnWater = false;
 
 		if (Input.GetButton ("Flyer") && Mathf.Sign(amountToMove.y) == -1 && !playerPhysics.grounded) {
 			gravityNow = whileFloating;

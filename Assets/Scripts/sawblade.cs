@@ -6,7 +6,7 @@ public class sawblade : MonoBehaviour {
 		
 		void OnTriggerEnter(Collider c){
 			if (c.tag == "Player") {
-			c.GetComponent<Entity>().TakeDamage(10);
+			c.GetComponent<Entity>().TakeDamage(10, "slashing");
 			}
 		}
 
