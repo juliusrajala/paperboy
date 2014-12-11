@@ -73,7 +73,7 @@ public class PlayerPhysics : MonoBehaviour {
 			if(Physics.Raycast(ray, out hit, Mathf.Abs(deltaY) + skin,collisionMask)){
 
 				string hitter = hit.transform.parent.name;
-				print (hitter);
+				//print (hitter);
 				//Checks the ground on wether or not it's water.
 				if(hitter.Equals ("Water")){
 					boatOnWater = true;
@@ -124,7 +124,6 @@ public class PlayerPhysics : MonoBehaviour {
 					GameObject joku = GameObject.FindGameObjectsWithTag("Player")[0];
 					joku.GetComponent<Entity>().TakeDamage(10, "slashing");
 				}
-				print (hitter);
 
 				if(dst > skin){
 					deltaX = dst * dir - skin * dir;

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class saksiainenControl : Entity {
+public class littleFlame : MonoBehaviour {
 
 	public float speed = 3;
 	public float range = 12;
@@ -13,11 +13,11 @@ public class saksiainenControl : Entity {
 	
 	void Start(){
 		centre = transform.position.x;
-		right = centre + range / 2;
-		left = centre - range / 2;
-		dir = -1;
+		right = 130;
+		left = -66.4394f;
+		dir = 1;
 	}
-
+	
 	void OnTriggerEnter(Collider c){
 		if (c.tag == "Player") {
 			GameObject joku = GameObject.FindGameObjectsWithTag("Player")[0];
@@ -29,8 +29,8 @@ public class saksiainenControl : Entity {
 	// Update is called once per frame
 	void Update () {
 		float p = transform.position.x;
-		if (p >= right || p <= left) {
-			dir = dir * -1;
+		if (p >= right) {
+			p = left;
 		}
 		Vector3 move = new Vector3 (p + speed * dir * Time.deltaTime, transform.position.y, transform.position.z);
 		transform.position = move;
