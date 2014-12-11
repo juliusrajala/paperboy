@@ -9,6 +9,7 @@ public class saksiainenControl : Entity {
 	private float right;
 	private float left;
 	private float dir;
+	public PlayerControl apina;
 	
 	void Start(){
 		centre = transform.position.x;
@@ -19,7 +20,9 @@ public class saksiainenControl : Entity {
 
 	void OnTriggerEnter(Collider c){
 		if (c.tag == "Player") {
-			c.GetComponent<Entity>().TakeDamage(10);
+			GameObject joku = GameObject.FindGameObjectsWithTag("Player")[0];
+			joku.animation.Play("tuliKuolema");
+			c.GetComponent<Entity>().TakeDamage(10, "slashing");
 		}
 	}
 	
